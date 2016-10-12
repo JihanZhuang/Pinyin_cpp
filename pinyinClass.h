@@ -10,6 +10,9 @@
 class Pinyin{
 	public:
 	protected:
+		char* prepare(const char* str);
+		char* romanize(const char* str,bool isName);
+		char* convertSurname(const char* str);
 	private:
-}
+};
 #endif
