@@ -7,12 +7,32 @@
 
 #ifndef PINYIN_PINYINCLASS_H
 #define PINYIN_PINYINCLASS_H
+#include <iostream>
+#include <string>
+#include <map>
+using namespace std;
 class Pinyin{
 	public:
-	protected:
+		map<string,string> punctuations;
+		Pinyin(){
+			punctuations.insert(pair<string, string>("，",","));
+			punctuations.insert(pair<string, string>("。","."));
+			punctuations.insert(pair<string, string>("！","!"));
+			punctuations.insert(pair<string, string>("？","?"));
+			punctuations.insert(pair<string, string>("：",":"));
+			punctuations.insert(pair<string, string>("“","\""));
+			punctuations.insert(pair<string, string>("”","\""));
+			punctuations.insert(pair<string, string>("‘","'"));
+			punctuations.insert(pair<string, string>("’","'"));
+			/*for(auto it = punctuations.begin(); it != punctuations.end(); ++it)
+{
+    std::cout << it->first << " " << it->second << " " << it->second << "\n";
+}
+		}*/
 		char* prepare(const char* str);
 		char* romanize(const char* str,bool isName);
 		char* convertSurname(const char* str);
+	protected:
 	private:
 };
 #endif
