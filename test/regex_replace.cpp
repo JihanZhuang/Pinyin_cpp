@@ -16,8 +16,8 @@ int main()
    std::regex vowel_re("[a-z0-9_-]+",std::regex::icase);
  
    // write the results to an output iterator
-   std::regex_replace(std::ostreambuf_iterator<char>(std::cout),
-                      text.begin(), text.end(), vowel_re, "*");
+   /*std::regex_replace(std::ostreambuf_iterator<char>(std::cout),
+                      text.begin(), text.end(), vowel_re, "*");*/
  
    // construct a string holding the results
    std::cout << '\n' << std::regex_replace(text, vowel_re, "\t$&") << '\n';
