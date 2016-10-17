@@ -6,17 +6,19 @@
  ************************************************************************/
 
 #include <iostream>
+#include <iterator>
+#include <regex>
 #include <string>
-#include <boost/regex.hpp> 
-using namespace std;
-using namespace boost;
+ 
 int main()
 {
-	string pattern="[a-z0-9_-]+";
-	pattern="[[:alpha:]]*" + pattern + "[[:alpha:]]*";
-	boost::regex re(pattern, regex::icase);
-	string text = "带着希望去旅行，比到达终点更美好,it is very beautiful,也不错!";
-	string result = boost::regex_replace(text, re,"\t$0");
-	cout << result << std::endl;
-		
+   std::string text = "带着希望去旅行，比到达终点更美好,it is very beautiful,也不错!Quick brown fox";
+   std::regex vowel_re("[a-z0-9_-]+",std::regex::icase);
+ 
+   // write the results to an output iterator
+   std::regex_replace(std::ostreambuf_iterator<char>(std::cout),
+                      text.begin(), text.end(), vowel_re, "*");
+ 
+   // construct a string holding the results
+   std::cout << '\n' << std::regex_replace(text, vowel_re, "\t$&") << '\n';
 }
