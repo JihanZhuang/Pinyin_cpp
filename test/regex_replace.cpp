@@ -14,7 +14,7 @@ int main()
 {
    std::string text = "带着希望去旅行，比到达终点更美好,it is very beautiful,也不错!Quick brown fox";
    std::regex a_re("[a-z0-9_-]+",std::regex::icase);
-   std::regex b_re("[^\\p{Han}\\p{P}\\p{Z}\\p{M}\\p{N}\\p{L}\t]",std::regex::icase);
+   std::regex b_re("[^\\p{Han}\\p{P}\\p{Z}\\p{M}\\p{N}\\p{L}\t]");
  
    // write the results to an output iterator
    /*std::regex_replace(std::ostreambuf_iterator<char>(std::cout),
