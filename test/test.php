@@ -1,6 +1,6 @@
 <?php
 
-$string ="，带着希望去旅行，比到达终点更美好,it is very beautiful,也不错!";
+$string ="，带着希望去旅行，比到达终点更美好,it is very beautiful,也不错!Qiuck";
 $string = preg_replace_callback('~[a-z0-9_-]+~i', function ($matches) {
             return "\t".$matches[0];
 }, $string);
