@@ -15,9 +15,13 @@ int main(){
   std::string str = "带着希望去旅行，比到达终点更美好,it is very beautiful,也错!Quick brown FOX";
   std::string newtext = "\t$&";
   boost::regex re("[a-z0-9_-]+",boost::regex::perl|boost::regex::icase);
+  boost::regex a_re("\p{Han}",boost::regex::perl|boost::regex::icase);
+
   std::cout << str << std::endl;
 
   std::string result = boost::regex_replace(str, re, newtext);
+  std::cout << result << std::endl;
+  result = boost::regex_replace(str, a_re, newtext);
   std::cout << result << std::endl;
 }
 
