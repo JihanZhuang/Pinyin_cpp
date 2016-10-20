@@ -17,8 +17,8 @@ int main()
    //std::regex b_re("[\\p{Han}\\p{P}\\p{Z}\\p{M}\\p{N}\\p{L}\t]");
  
    // write the results to an output iterator
-   /*std::regex_replace(std::ostreambuf_iterator<char>(std::cout),
-                      text.begin(), text.end(), vowel_re, "*");*/
+   std::regex_replace(std::ostreambuf_iterator<char>(std::cout),
+                      text.begin(), text.end(), a_re, "*");
  
    // construct a string holding the results
    string result = std::regex_replace(text, a_re, "\t$&");
