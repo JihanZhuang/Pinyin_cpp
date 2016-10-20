@@ -12,9 +12,9 @@
 using namespace std;
 
 int main(){
-  std::string str = "hellooooooooo";
-  std::string newtext = "o Bob";
-  boost::regex re("ooooooooo");
+  std::string str = "带着希望去旅行，比到达终点更美好,it is very beautiful,也错!Quick brown FOX";
+  std::string newtext = "\t$&";
+  boost::regex re("[a-z0-9_-]+",boost::regex::perl|boost::regex::icase);
   std::cout << str << std::endl;
 
   std::string result = boost::regex_replace(str, re, newtext);
