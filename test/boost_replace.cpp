@@ -16,7 +16,8 @@ int main(){
   std::string newtext = "\t$&";
   //boost::regex re("[a-z0-9_-]+",boost::regex::perl|boost::regex::icase);
   //boost::regex a_re("[^\u4e00-\u9fa5]|[[:space:]]|[[:punct:]]",boost::regex::perl|boost::regex::icase);
-  boost::regex a_re("[[:alnum:]]",boost::regex::perl|boost::regex::icase);
+  //boost::regex a_re("[[:punct:]]",boost::regex::perl|boost::regex::icase);
+  boost::regex a_re("[[:punct:]]",boost::regex::perl|boost::regex::icase);
   //boost::regex b_re("[[:space:]]",boost::regex::perl|boost::regex::icase);
 
   std::cout << str << std::endl;
