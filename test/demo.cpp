@@ -1,6 +1,8 @@
 #include "cppjieba/Jieba.hpp"
-
+#include "boost/algorithm/string.hpp"
+#include <fstream> 
 using namespace std;
+using namespace boost;
 
 const char* const DICT_PATH = "./dict/jieba.dict.utf8";
 const char* const HMM_PATH = "./dict/hmm_model.utf8";
@@ -23,17 +25,43 @@ int main(int argc, char** argv) {
   string file(argv[1]);
   string line;
   ifstream out;
+  ofstream ofresult("sitePageData.data",ios::app);
+  const size_t topk = 5;
+  vector<cppjieba::KeywordExtractor::Word> keywordres;
+  vector <string> fields;
+  
   out.open(file.c_str(),ios::in);
   while(!out.eof()){
 	  std::getline(out,line);
-	  jieba.Cut(line,words,true);
-	  cout << limonp::Join(words.begin(), words.end(), "/") << endl;
+	  split(fields,line,is_any_of(","));
+	int count = fields.size();
+	string newLine;
+    for (int i = 3; i < count;i++)
+    {
+		newLine+=fields.at(i);
+        //cout << fields.at(i) << endl;
+    }
+	  jieba.CutForSearch(newLine,words);
+	  if(words.size()>0){
+	  string tmpS=limonp::Join(words.begin(), words.end()," ");
+	  ofresult <<fields.at(0)<<","<<fields.at(1)<<","<<fields.at(2)<<","<<tmpS << endl;
+	  }
+	  //jieba.extractor.Extract(line, keywordres, topk);
+	  //cout << line << endl;
+	  //int count=keywordres.size();
+	  //for(int i=0;i<count;i++){
+	//	cout << keywordres[i].word<<" ";
+	 // }
+	 // cout<<endl;
+	 // cout<<keywordres<<endl;
+
   }
   out.close();
+  ofresult.close();
 return 1;
-/*  string s;
+  string s;
   string result;
-
+/*
   s = "他来到了网易杭研大厦";
   cout << s << endl;
   cout << "[demo] Cut With HMM" << endl;
@@ -80,7 +108,7 @@ return 1;
 
   cout << "[demo] Tagging" << endl;
   vector<pair<string, string> > tagres;
-  s = "我是拖拉机学院手扶拖拉机专业的。不用多久，我就会升职加薪，当上CEO，走上人生巅峰。";
+  s = "我是拖拉机学院手扶拖拉机专业的。不用多久，我就会升职加薪，当上CEO，走上人生巅峰。DOTA";
   jieba.Tag(s, tagres);
   cout << s << endl;
   cout << tagres << endl;;
@@ -90,6 +118,6 @@ return 1;
   vector<cppjieba::KeywordExtractor::Word> keywordres;
   jieba.extractor.Extract(s, keywordres, topk);
   cout << s << endl;
-  cout << keywordres << endl;*/
-  return EXIT_SUCCESS;
+  cout << keywordres << endl;
+  return EXIT_SUCCESS;*/
 }
